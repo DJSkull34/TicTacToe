@@ -1,1 +1,1 @@
-# TicTacToe
+# A small game I made during school
