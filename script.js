@@ -95,50 +95,23 @@ function numberGrab(x){
 	var number = x;
 	document.getElementById(number).style.backgroundColor="blue";
 }
-var gameObject = {
-	1:false,
-	2:false,
-	3:false,
-	4:false,
-	5:false,
-	6:false,
-	7:false,
-	8:false,
-	9:false,
-	checkFunction: function(z){
-		if(gameObject[z] == true){
-			return true;
-		}
-		else{
-			return false;
-		}
-	},
-	setTrue: function(y){
-		gameObject[y] = true;
-	}
-};
-var circle = 4;
-var cross = 3;
+var gameObject = [false, false, false, false, false, false, false, false, false];
+var currentPlayer = "X";
 function selected(x){
-	if(gameObject.checkFunction(x) == true){
+	document.getElementById(x).style.fontSize = document.getElementById(x).style.fontSize + 120;
+	document.getElementById(x).style.fontFamily = "Arial";
+	if(gameObject[x - 1] == true){
 		console.log("already selected");
 	}
-	else if(cross == 3){
-		circle = 3;
-		cross = 4;
-		gameObject.setTrue(x);
+	else if(currentPlayer == "X"){
+		currentPlayer = "O";
+		gameObject[x - 1] = true;
 		document.getElementById(x).innerHTML = "X";
-		document.getElementById(x).style.fontSize = document.getElementById(x).style.fontSize + 120;
-		document.getElementById(x).style.fontFamily = "Arial";
-		document.getElementById("turnCount").innerHTML = "It is O's turn";
 	}
-	else if(circle == 3){
-		circle = 4;
-		cross = 3;
-		gameObject.setTrue(x);
+	else if(currentPlayer == "O"){
+		currentPlayer = "X";
+		gameObject[x - 1] = true;
 		document.getElementById(x).innerHTML = "O";
-		document.getElementById(x).style.fontSize = document.getElementById(x).style.fontSize + 120;
-		document.getElementById(x).style.fontFamily = "Arial";
-		document.getElementById("turnCount").innerHTML = "It is X's turn";
 	}
+	document.getElementById("turnCount").innerHTML = "It is " + currentPlayer + "'s turn";
 }
